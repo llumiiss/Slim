@@ -1,0 +1,15 @@
+{
+    "name": "iam2/zadanie1",
+    "description": "Zadanie 1 - API kalkulatora (Slim Framework)",
+    "type": "project",
+    "authors": [
+        {
+            "name": "llumiiss",
+            "email": "mobi.litosh@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.15",
+        "slim/psr7": "^1.8"
+    }
+}
