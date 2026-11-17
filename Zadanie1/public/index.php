@@ -28,7 +28,7 @@ function json(Response $response, array $data, int $status = 200): Response
 /**
  * Zamienia wynik typu float na int, jeśli nie ma części ułamkowej (np. 15.0 -> 15).
  */
-function normalize(float $value): int|float
+function normalize(float $value)
 {
     return (floor($value) == $value && abs($value) < PHP_INT_MAX) ? (int) $value : $value;
 }
@@ -47,7 +47,9 @@ $app->get('/calculate', function (Request $request, Response $response): Respons
     // 1. Brak wymaganych parametrów
     $missing = array_values(array_filter(
         ['a', 'b', 'operation'],
-        fn (string $key): bool => !isset($params[$key]) || trim((string) $params[$key]) === ''
+        function (string $key) use ($params): bool {
+            return !isset($params[$key]) || trim((string) $params[$key]) === '';
+        }
     ));
 
     if ($missing !== []) {

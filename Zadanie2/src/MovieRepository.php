@@ -7,8 +7,12 @@ declare(strict_types=1);
  */
 final class MovieRepository
 {
-    public function __construct(private readonly string $file)
+    /** @var string Ścieżka do pliku JSON z filmami */
+    private $file;
+
+    public function __construct(string $file)
     {
+        $this->file = $file;
     }
 
     /** Zwraca wszystkie filmy. */
@@ -42,11 +46,19 @@ final class MovieRepository
     /** Wyszukuje filmy po fragmencie tytułu, bez rozróżniania wielkości liter. */
     public function searchByTitle(string $phrase): array
     {
-        $phrase = mb_strtolower($phrase);
+        $phrase = self::lower($phrase);
 
         return array_values(array_filter(
             $this->all(),
-            fn (array $movie): bool => str_contains(mb_strtolower($movie['title']), $phrase)
+            function (array $movie) use ($phrase): bool {
+                return strpos(self::lower($movie['title']), $phrase) !== false;
+            }
         ));
+    }
+
+    /** Zamienia tekst na małe litery (z obsługą polskich znaków, jeśli jest mbstring). */
+    private static function lower(string $text): string
+    {
+        return function_exists('mb_strtolower') ? mb_strtolower($text, 'UTF-8') : strtolower($text);
     }
 }
