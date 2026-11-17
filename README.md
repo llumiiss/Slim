@@ -7,6 +7,7 @@ Każde zadanie to osobny projekt Slim 4 w swoim folderze.
 | Zadanie | Opis |
 |---|---|
 | [Zadanie1](Zadanie1) | API kalkulatora (`/calculate?a=10&b=5&operation=add`) |
+| [Zadanie2](Zadanie2) | API katalogu filmów z danymi w pliku JSON (`/movies`, `/movies/{id}`, `/movies/search?title=`) |
 
 ## Wymagania
 

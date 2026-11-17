@@ -1,0 +1,15 @@
+{
+    "name": "iam2/zadanie2",
+    "description": "Zadanie 2 - API katalogu filmow (Slim Framework)",
+    "type": "project",
+    "authors": [
+        {
+            "name": "llumiiss",
+            "email": "mobi.litosh@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.15",
+        "slim/psr7": "^1.8"
+    }
+}
